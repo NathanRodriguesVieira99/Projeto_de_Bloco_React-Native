@@ -9,8 +9,12 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-navigation/native": "^7.0.13",
     "expo": "~52.0.11",
+    "expo-font": "^13.0.1",
     "expo-status-bar": "~2.0.0",
+    "install": "^0.13.0",
+    "npx": "^10.2.2",
     "react": "18.3.1",
     "react-native": "0.76.3"
   },
