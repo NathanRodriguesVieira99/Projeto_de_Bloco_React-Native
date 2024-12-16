@@ -4,7 +4,7 @@ export default function Configurations() {
   return (
     <View>
       <Text>
-        Configs
+        Configs do Vh
       </Text>
     </View>
   );
