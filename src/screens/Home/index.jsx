@@ -1,12 +1,12 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+// import React, { useEffect, useState } from 'react';
+// import { View, Text, FlatList, Image } from 'react-native';
+import { View } from 'react-native';
+import { CardsPopularMovies } from '../../components/CardsPopularMovies';
 
 const Home = () => {
   return (
-    <View>
-      <Text>Home</Text>
-    </View>
+      <CardsPopularMovies />
   )
-}
+};
 
-export default Home
+export default Home;
