@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
+import { SafeAreaView, Text, FlatList, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import fetchPopularMovies, { IMAGE_BASE_URL } from '../../api/apiServices';
-import { styles } from './styles'
 
 export const CardsPopularMovies = () => {
   const [movies, setMovies] = useState([]);
@@ -24,19 +23,19 @@ export const CardsPopularMovies = () => {
 
   const renderMovie = ({ item }) => (
     <TouchableOpacity>
-      <View style={styles.card}>
+      <SafeAreaView style={styles.card}>
         <Image
           style={styles.poster}
           source={{ uri: `${IMAGE_BASE_URL}${item.poster_path}` }}
         />
         <Text style={styles.title}>{item.title}</Text>
-      </View>
+      </SafeAreaView>
     </TouchableOpacity>
   );
 
-
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.header}>Filmes Populares</Text>
       {loading ? (
         <Text style={styles.loading}>Carregando...</Text>
       ) : (
@@ -44,11 +43,51 @@ export const CardsPopularMovies = () => {
           data={movies}
           keyExtractor={(item) => String(item.id)}
           renderItem={renderMovie}
-          showsVerticalScrollIndicator={false}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.carouselContainer}
         />
       )}
-    </View>
+    </SafeAreaView>
   );
+};
 
-
-}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#000',
+    paddingTop: 20,
+    paddingHorizontal: 10,
+  },
+  header: {
+    color: '#fff',
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 5,
+    textAlign: 'center',
+  },
+  loading: {
+    color: '#fff',
+    fontSize: 18,
+    textAlign: 'center',
+  },
+  carouselContainer: {
+    alignItems: 'center',
+  },
+  card: {
+    marginRight: 10,
+    alignItems: 'center',
+  },
+  poster: {
+    width: Dimensions.get('window').width * 0.6, 
+    height: Dimensions.get('window').width * 0.9, 
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+  title: {
+    color: '#fff', 
+    fontSize: 16,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+});
